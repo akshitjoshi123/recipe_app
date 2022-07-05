@@ -23,6 +23,4 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_object(self):
-        # import pdb; pdb.set_trace()
-        print(self.request.user)
         return self.request.user
