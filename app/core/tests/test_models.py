@@ -74,5 +74,5 @@ class ModelTests(TestCase):
             time_minutes = 5,
             price = 50.00,
         )
-        self.assertEqual(str(recipe), recipe.title)
+        self.assertEqual(str(recipe.title), recipe.title)
 
