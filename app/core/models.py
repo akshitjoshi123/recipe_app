@@ -70,7 +70,7 @@ class Recipe(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
     time_minutes = models.IntegerField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
     link = models.CharField(max_length=255, blank=True)
@@ -78,4 +78,4 @@ class Recipe(models.Model):
     tags = models.ManyToManyField('Tag')
 
     def __str__(self):
-        return self.title
+        return str(self.id)
