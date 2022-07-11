@@ -1,4 +1,6 @@
-import email
+from distutils.command.upload import upload
+import uuid
+import os
 from turtle import title
 from unicodedata import name
 from django.db import models
@@ -6,6 +8,12 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.conf import settings
 
 # Create your models here.
+
+def recipe_image_file_path(instance, filename):
+    """Generate file path for new recipe image"""
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+    return os.path.join('uploads/recipe/', filename)
 
 
 class UserManager(BaseUserManager):
@@ -25,7 +33,6 @@ class UserManager(BaseUserManager):
         user.is_staff = True
         user.save(using=self._db)
         return user
-
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -76,6 +83,7 @@ class Recipe(models.Model):
     link = models.CharField(max_length=255, blank=True)
     ingredient = models.ManyToManyField('Ingredient')
     tags = models.ManyToManyField('Tag')
+    image = models.ImageField(null=True, upload_to=recipe_image_file_path)
 
     def __str__(self):
         return str(self.id)
