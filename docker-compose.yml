@@ -5,11 +5,11 @@ services:
     build:
       context: .
     ports:
-      - "8000:8000"
+      - "8001:8001"
     volumes:
       - ./app:/app
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
+      sh -c "python manage.py runserver 0.0.0.0:8001"
     environment:
       - DB_HOST=db
       - DB_NAME=app
