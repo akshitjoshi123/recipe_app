@@ -14,8 +14,5 @@ RUN pip install -r /requirements.txt
 
 COPY ./app /app
 
-RUN mkdir -p /app/media
-RUN mkdir -p /app/static
-
 # RUN adduser -D user
 # USER user
